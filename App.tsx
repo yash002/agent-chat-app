@@ -8,9 +8,20 @@ import { AgentsListScreen } from './src/screens/AgentsListScreen';
 
 const Stack = createNativeStackNavigator();
 
+const linking = {
+  prefixes: ['myapp://'],
+  config: {
+    screens: {
+      AgentsList: 'agents',
+      AgentHome: 'home',
+      AgentChat: 'chat',
+    },
+  },
+};
+
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking}>
       <StatusBar style="light" backgroundColor="#1a1a1a" />
       <Stack.Navigator
         screenOptions={{

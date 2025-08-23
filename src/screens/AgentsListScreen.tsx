@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { AgentCard } from '../components/AgentCard';
 import { CategoryChips } from '../components/CategoryChips';
+import { Header } from '../components/Header';
 import { useAgentStore } from '../store/agentStore';
 import { theme } from '../theme';
 import { Agent } from '../types';
@@ -59,9 +60,7 @@ export const AgentsListScreen: React.FC = () => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.wrapper}>
-                <View style={styles.header}>
-                    <Text style={styles.title}>Agents</Text>
-                </View>
+                <Header title="Agents" />
 
                 <CategoryChips
                     categories={categories}
@@ -69,7 +68,11 @@ export const AgentsListScreen: React.FC = () => {
                     onCategorySelect={setActiveCategory}
                 />
 
-                <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+                <ScrollView
+                    style={styles.content}
+                    contentContainerStyle={{ paddingBottom: 0 }}
+                    showsVerticalScrollIndicator={false}
+                >
                     {Object.entries(groupedAgents).map(([category, categoryAgents]) => (
                         <View key={category} style={styles.section}>
                             <View style={styles.sectionHeader}>
@@ -125,24 +128,12 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         flex: 1,
-        paddingLeft: 30,
+        paddingHorizontal: 10,
         paddingTop: theme.spacing.sm,
         paddingBottom: 0,
     },
-    header: {
-        paddingVertical: 30,
-        paddingTop: theme.spacing.lg,
-        marginVertical: theme.spacing.md,
-        marginLeft: -30,
-
-    },
-    title: {
-        ...theme.typography.h1,
-        textAlign: 'center',
-    },
     content: {
         flex: 1,
-        marginHorizontal: -30,
     },
     section: {
         marginBottom: theme.spacing.xl,
@@ -151,16 +142,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingHorizontal: 30,
+        paddingHorizontal: 10,
         marginVertical: 20,
-        marginRight: 30
     },
     sectionTitle: {
         ...theme.typography.h2,
         fontSize: 18,
     },
     agentsList: {
-        paddingHorizontal: 30,
+        paddingHorizontal: 10,
     },
     bottomNav: {
         flexDirection: 'row',
